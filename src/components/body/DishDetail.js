@@ -1,10 +1,11 @@
 import React from 'react'
 import { Card, CardImg, CardImgOverlay, CardTitle, CardBody, CardText } from 'reactstrap'
+import LoadComments from './LoadComments'
 
 const DishDetail = ({dish}) => {
   return (
     <div>
-        <Card className="my-2">
+        <Card className="my-2" >
             <CardImg
             alt="Card image cap"
             src={dish.image}
@@ -26,6 +27,8 @@ const DishDetail = ({dish}) => {
             </CardText>
             </CardBody>
         </Card>
+        <hr/>
+        <LoadComments comments={dish.comments}/>
     </div>
   )
 }
