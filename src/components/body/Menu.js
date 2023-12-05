@@ -1,12 +1,16 @@
-import React, {Component, useState} from 'react'
+import React, { Component, useState } from 'react'
 import MenuItem from './MenuItem'
 import DISHES from '../../data/dishes'
 import DishDetail from './DishDetail'
+import COMMENTS from '../../data/comments.js'
 import { Button, CardColumns, Modal, ModalFooter } from 'reactstrap'
 
-class Menu extends Component{
+class Menu extends Component {
+
+
     state = {
         dishes: DISHES,
+        comments: COMMENTS,
         selectedDish: null,
         modalOpen: false
     }
@@ -18,23 +22,34 @@ class Menu extends Component{
         })
     }
 
-    toggleModal = () =>{
+    toggleModal = () => {
         this.setState({
-            modalOpen : !this.state.modalOpen,
+            modalOpen: !this.state.modalOpen,
 
         })
     }
 
-    
-    render(){
-        const menu = this.state.dishes.map((dish)=> {
+
+    render() {
+        document.title = 'Menu'
+
+        const menu = this.state.dishes.map((dish) => {
             return (
-                <MenuItem dish = {dish} onSelectDish={this.onSelectDish} key = {dish.id}/>
+                <MenuItem dish={dish} onSelectDish={this.onSelectDish} key={dish.id} />
             )
         })
-    
-        const dishDetail = this.state.selectedDish? <DishDetail dish = {this.state.selectedDish}/>: null
-    
+
+        let dishDetail = null
+        if (this.state.selectedDish != null) {
+            const comments = this.state.comments.filter(comment => {
+                return comment.dishId === this.state.selectedDish.id
+            })
+            dishDetail = <DishDetail
+                dish={this.state.selectedDish}
+                comments={comments}
+            />
+        }
+
 
         return (
             <div className='container'>
@@ -49,12 +64,12 @@ class Menu extends Component{
                         </ModalFooter>
                     </Modal>
                 </div>
-        
-            </div>
-          )
-        }
-    }
 
-  
+            </div>
+        )
+    }
+}
+
+
 
 export default Menu
