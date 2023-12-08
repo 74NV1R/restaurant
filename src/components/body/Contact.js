@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap'
+import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
-export class Contact extends Component {
+class Contact extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             firstname: "",
             lastname: "",
@@ -13,72 +13,77 @@ export class Contact extends Component {
             contactType: 'Tel.',
             message: ""
         }
-
-        this.handleInputChange = this.handleInputChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange = event => {
-        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
-
-        const name = event.target.name
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+        const name = event.target.name;
         this.setState({
-            [name]: value,
+            [name]: value
         })
     }
 
     handleSubmit = event => {
-        console.log(this.state)
-        event.preventDefault()
+        console.log(this.state);
+        event.preventDefault();
     }
 
     render() {
-        document.title = 'Contact'
+        document.title = "Contact";
         return (
-            <div className='container'>
-                <div className='row row-content' style={{
-                    paddingLeft: '20px',
-                    textAlign: "left"
-                }}>
-                    <div className='col-12'>
-                        <h3>Send us your feedback</h3>
+            <div className="container">
+                <div className="row row-content" style={{ paddingLeft: "20px", textAlign: "left" }}>
+                    <div className="col-12">
+                        <h3>Send us your Feedback</h3>
                     </div>
-                    <div className='col-12 col-md-7' >
+                    <div className="col-12 col-md-7">
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup row>
-                                <Label htmlFor='firstname' md={2}>First Name</Label>
+                                <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
-                                    <input type='text' name="firstname" placeholder='First Name'
+                                    <Input
+                                        type="text"
+                                        name="firstname"
+                                        placeholder="First Name"
                                         value={this.state.firstname}
                                         onChange={this.handleInputChange}
                                     />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label htmlFor='laststname' md={2}>Last Name</Label>
+                                <Label htmlFor="lastname" md={2}>Last Name</Label>
                                 <Col md={10}>
-                                    <input type='text' name="lastname" placeholder='Last Name'
+                                    <Input
+                                        type="text"
+                                        name="lastname"
                                         value={this.state.lastname}
+                                        placeholder="Last Name"
                                         onChange={this.handleInputChange}
                                     />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label htmlFor='telnum' md={2}>Contact Tel.</Label>
+                                <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                                 <Col md={10}>
-                                    <input type='text' name="telnum"
-                                        placeholder='Tel. Number'
+                                    <Input
+                                        type="tel"
+                                        name="telnum"
                                         value={this.state.telnum}
+                                        placeholder="Tel. Number"
                                         onChange={this.handleInputChange}
                                     />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label htmlFor='email' md={2}>Email</Label>
+                                <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
-                                    <input type='text'
-                                        name="email" placeholder='Email'
+                                    <Input
+                                        type="email"
+                                        name="email"
                                         value={this.state.email}
+                                        placeholder="Email"
                                         onChange={this.handleInputChange}
                                     />
                                 </Col>
@@ -87,7 +92,9 @@ export class Contact extends Component {
                                 <Col md={{ size: 6, offset: 2 }}>
                                     <FormGroup check>
                                         <Label check>
-                                            <Input type='checkbox' name='agree'
+                                            <Input
+                                                type="checkbox"
+                                                name="agree"
                                                 checked={this.state.agree}
                                                 onChange={this.handleInputChange}
                                             />
@@ -97,20 +104,25 @@ export class Contact extends Component {
                                     </FormGroup>
                                 </Col>
                                 <Col md={{ size: 3, offset: 1 }}>
-                                    <Input type='select' name='contactType' value={this.state.contactType}
+                                    <Input
+                                        type="select"
+                                        name="contactType"
+                                        value={this.state.contactType}
                                         onChange={this.handleInputChange}
                                     >
-                                        <option>Tel. </option>
+                                        <option>Tel.</option>
                                         <option>Email</option>
                                     </Input>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label htmlFor='messge' md={2}>
-                                    Your feedback
-                                </Label>
+                                <Label htmlFor="message" md={2}>Your Feedback</Label>
                                 <Col md={10}>
-                                    <Input type='textarea' name='message' value={this.state.message} rows="12"
+                                    <Input
+                                        type="textarea"
+                                        name="message"
+                                        value={this.state.message}
+                                        rows="12"
                                         onChange={this.handleInputChange}
                                     >
 
@@ -119,20 +131,17 @@ export class Contact extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Col md={{ size: 10, offset: 2 }}>
-                                    <Button type='submit' color='primary'>
-                                        Send feedback
+                                    <Button type="submit" color="primary">
+                                        Send Feedback
                                     </Button>
                                 </Col>
                             </FormGroup>
-
                         </Form>
-
                     </div>
-
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default Contact
+export default Contact;
