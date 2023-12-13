@@ -1,27 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-const mapStateToProps = state => {
-    console.log("mapStateToProps: ", state);
-    return {
-        dishes: state.dishes,
-        sample: state.sample
-    }
-}
+import React, { Component } from 'react'
+import Loading from './Loading'
 
 class Home extends Component {
-    componentDidMount() {
-        console.log("Home State: ", this.state);
-        console.log("Home Props: ", this.props);
-    }
     render() {
-        document.title = "Bohubrihi Restaurant";
+        document.title = "Restaurant"
         return (
             <div>
-
+                <Loading />
             </div>
-        );
+        )
+
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default Home
